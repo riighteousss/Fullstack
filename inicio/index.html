@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixsy - Tu Mecánico de Confianza</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">🔧 Fixsy</div>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="mecanicos.html">Mecánicos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="registro.html">Registro</a></li>
+                </ul>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <h1>Tu Mecánico de Confianza, Cuando lo Necesites</h1>
+            <p>Conectamos a conductores con mecánicos verificados para servicios rápidos, seguros y profesionales</p>
+            <div class="cta-buttons">
+                <a href="registro.html" class="btn btn-primary">Solicitar Servicio</a>
+                <a href="#como-funciona" class="btn btn-secondary">Cómo Funciona</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Principales -->
+    <section class="servicios">
+        <div class="container">
+            <h2 class="section-title fade-in">Nuestros Servicios</h2>
+            <div class="servicios-grid">
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon">🔧</div>
+                    <h3>Mantención General</h3>
+                    <p>Revisión completa de tu vehículo por mecánicos certificados</p>
+                    <div class="precio">Desde $25.000</div>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon">🚗</div>
+                    <h3>Emergencias 24/7</h3>
+                    <p>Asistencia mecánica inmediata donde te encuentres</p>
+                    <div class="precio">Desde $35.000</div>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon">🏠</div>
+                    <h3>Servicio a Domicilio</h3>
+                    <p>Llevamos el taller hasta tu casa u oficina</p>
+                    <div class="precio">Desde $30.000</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo Funciona -->
+    <section class="como-funciona" id="como-funciona">
+        <div class="container">
+            <h2 class="section-title fade-in">¿Cómo Funciona?</h2>
+            <div class="pasos-grid">
+                <div class="paso fade-in">
+                    <div class="paso-numero">1</div>
+                    <h3>Solicita tu Servicio</h3>
+                    <p>Describe tu problema o elige el tipo de mantención que necesitas</p>
+                </div>
+                <div class="paso fade-in">
+                    <div class="paso-numero">2</div>
+                    <h3>Te Asignamos un Mecánico</h3>
+                    <p>Seleccionamos al mecánico más cercano y mejor calificado para ti</p>
+                </div>
+                <div class="paso fade-in">
+                    <div class="paso-numero">3</div>
+                    <h3>Recibe tu Servicio</h3>
+                    <p>El mecánico llega a tu ubicación o te recibe en su taller</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Fixsy</h3>
+                    <p>Tu plataforma de confianza para servicios mecánicos profesionales y verificados.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <a href="servicios.html">Servicios</a>
+                    <a href="mecanicos.html">Mecánicos</a>
+                    <a href="contacto.html">Contacto</a>
+                    <a href="registro.html">Registro</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📞 +56 9 1234 5678</p>
+                    <p>📧 info@fixsy.cl</p>
+                    <p>📍 Santiago, Chile</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fixsy. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle para móviles
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Animaciones de scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos con clase fade-in
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
