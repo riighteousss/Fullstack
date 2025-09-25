@@ -4,82 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios - Fixsy</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .servicios-detalle {
-            padding: 120px 0 80px;
-        }
-        
-        .servicio-detallado {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        
-        .servicio-imagen {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #1976d2, #2196f3);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            flex-shrink: 0;
-        }
-        
-        .servicio-info {
-            flex: 1;
-        }
-        
-        .servicio-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-        
-        .servicio-info p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .servicio-precio {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #4caf50;
-            margin-bottom: 1rem;
-        }
-        
-        .servicio-incluye {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .servicio-incluye li {
-            padding: 0.3rem 0;
-            color: #666;
-        }
-        
-        .servicio-incluye li:before {
-            content: "✓";
-            color: #4caf50;
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-        
-        @media (max-width: 768px) {
-            .servicio-detallado {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Header -->
@@ -152,38 +77,6 @@
                 </div>
             </div>
 
-            <div class="servicio-detallado fade-in">
-                <div class="servicio-imagen">⚡</div>
-                <div class="servicio-info">
-                    <h3>Sistema Eléctrico</h3>
-                    <p>Diagnóstico y reparación de problemas eléctricos en tu vehículo.</p>
-                    <div class="servicio-precio">Desde $20.000</div>
-                    <ul class="servicio-incluye">
-                        <li>Diagnóstico eléctrico</li>
-                        <li>Reparación de alternador</li>
-                        <li>Cambio de batería</li>
-                        <li>Sistema de luces</li>
-                        <li>Revisión de fusibles</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="servicio-detallado fade-in">
-                <div class="servicio-imagen">🛞</div>
-                <div class="servicio-info">
-                    <h3>Neumáticos y Alineación</h3>
-                    <p>Servicio completo de neumáticos, balanceo y alineación para tu seguridad.</p>
-                    <div class="servicio-precio">Desde $15.000</div>
-                    <ul class="servicio-incluye">
-                        <li>Cambio de neumáticos</li>
-                        <li>Balanceo de ruedas</li>
-                        <li>Alineación computarizada</li>
-                        <li>Revisión de presión</li>
-                        <li>Rotación de neumáticos</li>
-                    </ul>
-                </div>
-            </div>
-
             <div style="text-align: center; margin-top: 3rem;">
                 <a href="registro.html" class="btn btn-primary">Solicitar Servicio Ahora</a>
             </div>
@@ -218,32 +111,6 @@
         </div>
     </footer>
 
-    <script>
-        // Menu toggle para móviles
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Animaciones de scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

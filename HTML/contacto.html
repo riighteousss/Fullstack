@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Fixsy</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Header -->
@@ -24,136 +24,105 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <h1>Contáctanos</h1>
-            <p>Estamos aquí para ayudarte. Contáctanos por cualquier consulta o emergencia</p>
-        </div>
-    </section>
-
-    <!-- Información de Contacto -->
-    <section style="padding: 80px 0; background: white;">
+    <!-- Contacto Section -->
+    <section class="contacto-section">
         <div class="container">
-            <div class="servicios-grid">
-                <article class="servicio-card fade-in">
-                    <div class="servicio-icon">📞</div>
-                    <h3>Teléfono</h3>
-                    <p>Llámanos directamente para emergencias o consultas</p>
-                    <p style="font-size: 1.2rem; color: #1976d2; font-weight: bold;">+56 9 1234 5678</p>
-                    <p>Atención 24/7 para emergencias</p>
-                </article>
-
-                <article class="servicio-card fade-in">
-                    <div class="servicio-icon">📧</div>
-                    <h3>Email</h3>
-                    <p>Envíanos un correo y te responderemos en menos de 2 horas</p>
-                    <p style="font-size: 1.2rem; color: #1976d2; font-weight: bold;">info@fixsy.cl</p>
-                    <p>Lunes a Domingo: 8:00 - 22:00</p>
-                </article>
-
-                <article class="servicio-card fade-in">
-                    <div class="servicio-icon">📍</div>
-                    <h3>Ubicación</h3>
-                    <p>Oficinas principales en Santiago</p>
-                    <p style="font-size: 1.1rem; color: #333;">Av. Providencia 1234<br>Providencia, Santiago<br>Chile</p>
-                </article>
-            </div>
+            <h1 class="section-title">Contáctanos</h1>
+            <p style="text-align: center; color: #666; margin-bottom: 3rem;">
+                ¿Tienes alguna pregunta? Estamos aquí para ayudarte
+            </p>
         </div>
-    </section>
-
-    <!-- Formulario de Contacto -->
-    <section style="padding: 80px 0; background: #f8fafc;">
-        <div class="container">
-            <h2 class="section-title fade-in">Envíanos un Mensaje</h2>
-            <div style="max-width: 800px; margin: 0 auto;">
-                <form id="contactoForm" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                        <div class="form-group">
-                            <label for="nombreContacto">Nombre *</label>
-                            <input type="text" id="nombreContacto" name="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="emailContacto">Email *</label>
-                            <input type="email" id="emailContacto" name="email" required>
-                        </div>
+        
+        <div class="contacto-container">
+            <div class="contacto-info fade-in">
+                <h2 style="margin-bottom: 2rem; color: #333;">Información de Contacto</h2>
+                
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-text">
+                        <h3>Teléfono</h3>
+                        <p>+56 9 1234 5678</p>
+                        <p>Disponible 24/7 para emergencias</p>
                     </div>
-
-                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">📧</div>
+                    <div class="info-text">
+                        <h3>Email</h3>
+                        <p>info@fixsy.cl</p>
+                        <p>Respuesta en menos de 2 horas</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <h3>Ubicación</h3>
+                        <p>Santiago, Chile</p>
+                        <p>Cobertura en toda la Región Metropolitana</p>
+                    </div>
+                </div>
+                
+                <div class="horarios">
+                    <h3>Horarios de Atención</h3>
+                    <div class="horario-item">
+                        <span>Lunes - Viernes:</span>
+                        <span>8:00 - 20:00</span>
+                    </div>
+                    <div class="horario-item">
+                        <span>Sábados:</span>
+                        <span>9:00 - 18:00</span>
+                    </div>
+                    <div class="horario-item">
+                        <span>Domingos:</span>
+                        <span>10:00 - 16:00</span>
+                    </div>
+                    <div class="horario-item">
+                        <span>Emergencias:</span>
+                        <span>24/7</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contacto-form fade-in">
+                <h2 style="margin-bottom: 2rem; color: #333;">Envíanos un Mensaje</h2>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo *</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono">
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="asunto">Asunto *</label>
                         <select id="asunto" name="asunto" required>
-                            <option value="">Selecciona un tema</option>
-                            <option value="consulta">Consulta General</option>
-                            <option value="cotizacion">Solicitar Cotización</option>
-                            <option value="reclamo">Reclamo o Sugerencia</option>
+                            <option value="">Selecciona un asunto</option>
+                            <option value="consulta-general">Consulta General</option>
+                            <option value="solicitar-servicio">Solicitar Servicio</option>
                             <option value="emergencia">Emergencia</option>
-                            <option value="otro">Otro</option>
+                            <option value="reclamo">Reclamo</option>
+                            <option value="sugerencia">Sugerencia</option>
                         </select>
                     </div>
-
-                    <div class="form-group" style="margin-bottom: 1.5rem;">
-                        <label for="mensajeContacto">Mensaje *</label>
-                        <textarea id="mensajeContacto" name="mensaje" rows="5" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                    
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje *</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Describe tu consulta o problema..." required></textarea>
                     </div>
-
-                    <div style="text-align: center;">
-                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-                    </div>
+                    
+                    <button type="submit" class="btn-enviar">Enviar Mensaje</button>
                 </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mapa Embebido -->
-    <section style="padding: 40px 0; background: white;">
-        <div class="container">
-            <h2 class="section-title fade-in">Nuestra Ubicación</h2>
-            <div style="text-align: center;">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.7!2d-70.6!3d-33.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDI0JzAwLjAiUyA3MMKwMzYnMDAuMCJX!5e0!3m2!1ses!2scl!4v1"
-                    width="100%" 
-                    height="400" 
-                    style="border:0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" 
-                    allowfullscreen="" 
-                    loading="lazy">
-                </iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Horarios de Atención -->
-    <section style="padding: 80px 0; background: #f8fafc;">
-        <div class="container">
-            <h2 class="section-title fade-in">Horarios de Atención</h2>
-            <div style="max-width: 600px; margin: 0 auto;">
-                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <thead>
-                            <tr style="background: #1976d2; color: white;">
-                                <th style="padding: 15px; text-align: left; border-radius: 8px 0 0 0;">Día</th>
-                                <th style="padding: 15px; text-align: left;">Horario Oficina</th>
-                                <th style="padding: 15px; text-align: left; border-radius: 0 8px 0 0;">Emergencias</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 12px; font-weight: 600;">Lunes - Viernes</td>
-                                <td style="padding: 12px;">8:00 - 20:00</td>
-                                <td style="padding: 12px; color: #4caf50; font-weight: 600;">24 Horas</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 12px; font-weight: 600;">Sábado</td>
-                                <td style="padding: 12px;">9:00 - 18:00</td>
-                                <td style="padding: 12px; color: #4caf50; font-weight: 600;">24 Horas</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 12px; font-weight: 600;">Domingo</td>
-                                <td style="padding: 12px;">10:00 - 16:00</td>
-                                <td style="padding: 12px; color: #4caf50; font-weight: 600;">24 Horas</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </section>
@@ -168,7 +137,6 @@
                 </div>
                 <div class="footer-section">
                     <h3>Enlaces Rápidos</h3>
-                    <a href="index.html">Inicio</a>
                     <a href="servicios.html">Servicios</a>
                     <a href="mecanicos.html">Mecánicos</a>
                     <a href="contacto.html">Contacto</a>
@@ -182,39 +150,13 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Fixsy. Todos los derechos reservados.</p>
+                <p>&copy; 2025 Fixsy. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script>
-        // Validación del formulario de contacto
-        document.getElementById('contactoForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const nombre = document.getElementById('nombreContacto').value;
-            const email = document.getElementById('emailContacto').value;
-            const asunto = document.getElementById('asunto').value;
-            const mensaje = document.getElementById('mensajeContacto').value;
-            
-            if (!nombre || !email || !asunto || !mensaje) {
-                alert('Por favor, completa todos los campos requeridos.');
-                return;
-            }
-            
-            // Simular envío
-            const btn = e.target.querySelector('button[type="submit"]');
-            btn.textContent = 'Enviando...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                alert('¡Mensaje enviado exitosamente! Te responderemos pronto.');
-                this.reset();
-                btn.textContent = 'Enviar Mensaje';
-                btn.disabled = false;
-            }, 2000);
-        });
-    </script>
+    <script src="js/main.js"></script>
+    <script src="js/validaciones.js"></script>
+    <script src="js/contacto.js"></script>
 </body>
 </html>

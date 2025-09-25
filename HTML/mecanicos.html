@@ -4,79 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mecánicos - Fixsy</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .mecanico-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-        .mecanico-card:hover {
-            transform: translateY(-5px);
-        }
-        .mecanico-foto {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #1976d2, #2196f3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-        }
-        .rating {
-            color: #ff6f00;
-            font-size: 1.2rem;
-            margin: 0.5rem 0;
-        }
-        .especialidad {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            display: inline-block;
-            margin: 0.25rem;
-        }
-        .disponible {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: #4caf50;
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-        }
-        .no-disponible {
-            background: #f44336;
-        }
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 1rem 0;
-            text-align: center;
-        }
-        .stat {
-            padding: 0.5rem;
-        }
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1976d2;
-        }
-        .stat-label {
-            font-size: 0.875rem;
-            color: #666;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Header -->
@@ -96,284 +24,59 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <h1>Nuestros Mecánicos Certificados</h1>
-            <p>Profesionales experimentados y verificados para brindarte el mejor servicio</p>
-        </div>
-    </section>
-
-    <!-- Video de Presentación -->
-    <section style="padding: 40px 0; background: white;">
+    <!-- Mecánicos Section -->
+    <section class="mecanicos-section">
         <div class="container">
-            <h2 class="section-title">Conoce a Nuestro Equipo</h2>
-            <div style="text-align: center; margin-bottom: 40px;">
-                <video width="100%" style="max-width: 800px;" controls poster="https://via.placeholder.com/800x450/1976d2/ffffff?text=Equipo+Fixsy">
-                    <source src="video/equipo-mecanicos.mp4" type="video/mp4">
-                    <source src="video/equipo-mecanicos.webm" type="video/webm">
-                    Tu navegador no soporta el elemento video.
-                </video>
+            <h1 class="section-title">Nuestros Mecánicos Certificados</h1>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                Todos nuestros mecánicos están verificados, certificados y tienen años de experiencia
+            </p>
+            
+            <div class="filtros">
+                <button class="filtro-btn active" data-filtro="todos">Todos</button>
+                <button class="filtro-btn" data-filtro="mantencion">Mantención</button>
+                <button class="filtro-btn" data-filtro="emergencias">Emergencias</button>
+                <button class="filtro-btn" data-filtro="electrico">Eléctrico</button>
             </div>
-        </div>
-    </section>
 
-    <!-- Filtros -->
-    <section style="padding: 40px 0; background: #f8fafc;">
-        <div class="container">
-            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
-                <button class="btn btn-secondary filtro-btn active" data-filtro="todos">Todos</button>
-                <button class="btn btn-secondary filtro-btn" data-filtro="motor">Motor</button>
-                <button class="btn btn-secondary filtro-btn" data-filtro="electrico">Eléctrico</button>
-                <button class="btn btn-secondary filtro-btn" data-filtro="frenos">Frenos</button>
-                <button class="btn btn-secondary filtro-btn" data-filtro="neumaticos">Neumáticos</button>
-                <button class="btn btn-secondary filtro-btn" data-filtro="disponible">Disponibles</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lista de Mecánicos -->
-    <section style="padding: 40px 0; background: #f8fafc;">
-        <div class="container">
-            <div class="servicios-grid" id="mecanicosList">
-                <!-- Mecánico 1 -->
-                <article class="mecanico-card fade-in" data-especialidades="motor,electrico" data-disponible="true">
-                    <div class="disponible">Disponible</div>
-                    <div class="mecanico-foto">👨‍🔧</div>
-                    <h3>Carlos Rodríguez</h3>
-                    <div class="rating">★★★★★ 4.9</div>
-                    <p>15 años de experiencia</p>
-                    
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-number">850+</div>
-                            <div class="stat-label">Servicios</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">98%</div>
-                            <div class="stat-label">Satisfacción</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">4.9</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
+            <div class="mecanicos-grid">
+                <div class="mecanico-card fade-in" data-categoria="mantencion emergencias">
+                    <div class="mecanico-avatar">👨‍🔧</div>
+                    <div class="mecanico-nombre">Carlos Rodríguez</div>
+                    <div class="mecanico-especialidad">Especialista en Mantención General</div>
+                    <div class="mecanico-rating">
+                        <span class="estrellas">★★★★★</span>
+                        <span class="rating-numero">4.9</span>
                     </div>
-
-                    <div style="margin: 1rem 0;">
-                        <span class="especialidad">Motor</span>
-                        <span class="especialidad">Sistema Eléctrico</span>
-                        <span class="especialidad">Diagnóstico</span>
-                    </div>
-
-                    <p><strong>Zona de cobertura:</strong> Santiago Centro, Las Condes</p>
-                    
-                    <button class="btn btn-primary" onclick="contactarMecanico('Carlos Rodríguez')">
-                        Contactar
-                    </button>
-                </article>
-
-                <!-- Mecánico 2 -->
-                <article class="mecanico-card fade-in" data-especialidades="frenos,neumaticos" data-disponible="false">
-                    <div class="disponible no-disponible">Ocupado</div>
-                    <div class="mecanico-foto">👩‍🔧</div>
-                    <h3>María González</h3>
-                    <div class="rating">★★★★★ 4.8</div>
-                    <p>12 años de experiencia</p>
-                    
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-number">720+</div>
-                            <div class="stat-label">Servicios</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">96%</div>
-                            <div class="stat-label">Satisfacción</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">4.8</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                    </div>
-
-                    <div style="margin: 1rem 0;">
-                        <span class="especialidad">Frenos</span>
-                        <span class="especialidad">Neumáticos</span>
-                        <span class="especialidad">Suspensión</span>
-                    </div>
-
-                    <p><strong>Zona de cobertura:</strong> Providencia, Ñuñoa</p>
-                    
-                    <button class="btn btn-primary" disabled>
-                        No Disponible
-                    </button>
-                </article>
-
-                <!-- Mecánico 3 -->
-                <article class="mecanico-card fade-in" data-especialidades="electrico,motor" data-disponible="true">
-                    <div class="disponible">Disponible</div>
-                    <div class="mecanico-foto">👨‍🔧</div>
-                    <h3>Roberto Silva</h3>
-                    <div class="rating">★★★★☆ 4.7</div>
-                    <p>18 años de experiencia</p>
-                    
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-number">1200+</div>
-                            <div class="stat-label">Servicios</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">95%</div>
-                            <div class="stat-label">Satisfacción</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">4.7</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                    </div>
-
-                    <div style="margin: 1rem 0;">
-                        <span class="especialidad">Electrónica Avanzada</span>
-                        <span class="especialidad">Motor</span>
-                        <span class="especialidad">Inyección</span>
-                    </div>
-
-                    <p><strong>Zona de cobertura:</strong> Maipú, Pudahuel</p>
-                    
-                    <button class="btn btn-primary" onclick="contactarMecanico('Roberto Silva')">
-                        Contactar
-                    </button>
-                </article>
-
-                <!-- Mecánico 4 -->
-                <article class="mecanico-card fade-in" data-especialidades="neumaticos,frenos" data-disponible="true">
-                    <div class="disponible">Disponible</div>
-                    <div class="mecanico-foto">👨‍🔧</div>
-                    <h3>Andrés Morales</h3>
-                    <div class="rating">★★★★★ 4.9</div>
-                    <p>10 años de experiencia</p>
-                    
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-number">650+</div>
-                            <div class="stat-label">Servicios</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">99%</div>
-                            <div class="stat-label">Satisfacción</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">4.9</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                    </div>
-
-                    <div style="margin: 1rem 0;">
-                        <span class="especialidad">Alineación 3D</span>
-                        <span class="especialidad">Balanceado</span>
-                        <span class="especialidad">Neumáticos</span>
-                    </div>
-
-                    <p><strong>Zona de cobertura:</strong> La Reina, Peñalolén</p>
-                    
-                    <button class="btn btn-primary" onclick="contactarMecanico('Andrés Morales')">
-                        Contactar
-                    </button>
-                </article>
-
-                <!-- Mecánico 5 -->
-                <article class="mecanico-card fade-in" data-especialidades="motor,electrico" data-disponible="false">
-                    <div class="disponible no-disponible">Ocupado</div>
-                    <div class="mecanico-foto">👩‍🔧</div>
-                    <h3>Patricia Herrera</h3>
-                    <div class="rating">★★★★☆ 4.6</div>
-                    <p>14 años de experiencia</p>
-                    
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-number">800+</div>
-                            <div class="stat-label">Servicios</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">94%</div>
-                            <div class="stat-label">Satisfacción</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">4.6</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                    </div>
-
-                    <div style="margin: 1rem 0;">
-                        <span class="especialidad">Transmisión</span>
-                        <span class="especialidad">Embrague</span>
-                        <span class="especialidad">Motor</span>
-                    </div>
-
-                    <p><strong>Zona de cobertura:</strong> San Miguel, La Cisterna</p>
-                    
-                    <button class="btn btn-primary" disabled>
-                        No Disponible
-                    </button>
-                </article>
-
-                <!-- Mecánico 6 -->
-                <article class="mecanico-card fade-in" data-especialidades="electrico,frenos" data-disponible="true">
-                    <div class="disponible">Disponible</div>
-                    <div class="mecanico-foto">👨‍🔧</div>
-                    <h3>Luis Castillo</h3>
-                    <div class="rating">★★★★★ 4.8</div>
-                    <p>8 años de experiencia</p>
-                    
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-number">450+</div>
-                            <div class="stat-label">Servicios</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">97%</div>
-                            <div class="stat-label">Satisfacción</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">4.8</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                    </div>
-
-                    <div style="margin: 1rem 0;">
-                        <span class="especialidad">Sistema ABS</span>
-                        <span class="especialidad">Airbags</span>
-                        <span class="especialidad">Computadora</span>
-                    </div>
-
-                    <p><strong>Zona de cobertura:</strong> Vitacura, Lo Barnechea</p>
-                    
-                    <button class="btn btn-primary" onclick="contactarMecanico('Luis Castillo')">
-                        Contactar
-                    </button>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Proceso de Selección -->
-    <section style="padding: 80px 0; background: white;">
-        <div class="container">
-            <h2 class="section-title fade-in">Proceso de Certificación</h2>
-            <div class="pasos-grid">
-                <div class="paso fade-in">
-                    <div class="paso-numero">1</div>
-                    <h3>Verificación de Experiencia</h3>
-                    <p>Revisamos antecedentes laborales y certificaciones técnicas</p>
+                    <div class="mecanico-experiencia">15 años de experiencia</div>
+                    <div class="mecanico-ubicacion">📍 Las Condes, Santiago</div>
+                    <a href="registro.html" class="btn-contactar">Solicitar Servicio</a>
                 </div>
-                <div class="paso fade-in">
-                    <div class="paso-numero">2</div>
-                    <h3>Prueba Técnica</h3>
-                    <p>Evaluamos conocimientos y habilidades prácticas</p>
+
+                <div class="mecanico-card fade-in" data-categoria="emergencias electrico">
+                    <div class="mecanico-avatar">👩‍🔧</div>
+                    <div class="mecanico-nombre">María González</div>
+                    <div class="mecanico-especialidad">Emergencias 24/7 y Sistema Eléctrico</div>
+                    <div class="mecanico-rating">
+                        <span class="estrellas">★★★★★</span>
+                        <span class="rating-numero">4.8</span>
+                    </div>
+                    <div class="mecanico-experiencia">12 años de experiencia</div>
+                    <div class="mecanico-ubicacion">📍 Providencia, Santiago</div>
+                    <a href="registro.html" class="btn-contactar">Solicitar Servicio</a>
                 </div>
-                <div class="paso fade-in">
-                    <div class="paso-numero">3</div>
-                    <h3>Evaluación Continua</h3>
-                    <p>Monitoreamos calidad y satisfacción del cliente</p>
+
+                <div class="mecanico-card fade-in" data-categoria="mantencion">
+                    <div class="mecanico-avatar">👨‍🔧</div>
+                    <div class="mecanico-nombre">Pedro Martínez</div>
+                    <div class="mecanico-especialidad">Mantención y Reparaciones</div>
+                    <div class="mecanico-rating">
+                        <span class="estrellas">★★★★☆</span>
+                        <span class="rating-numero">4.7</span>
+                    </div>
+                    <div class="mecanico-experiencia">10 años de experiencia</div>
+                    <div class="mecanico-ubicacion">📍 Ñuñoa, Santiago</div>
+                    <a href="registro.html" class="btn-contactar">Solicitar Servicio</a>
                 </div>
             </div>
         </div>
@@ -389,7 +92,6 @@
                 </div>
                 <div class="footer-section">
                     <h3>Enlaces Rápidos</h3>
-                    <a href="index.html">Inicio</a>
                     <a href="servicios.html">Servicios</a>
                     <a href="mecanicos.html">Mecánicos</a>
                     <a href="contacto.html">Contacto</a>
@@ -403,88 +105,12 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Fixsy. Todos los derechos reservados.</p>
+                <p>&copy; 2025 Fixsy. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script>
-        // Funcionalidad de filtros
-        document.addEventListener('DOMContentLoaded', function() {
-            const filtros = document.querySelectorAll('.filtro-btn');
-            const mecanicos = document.querySelectorAll('.mecanico-card');
-
-            filtros.forEach(filtro => {
-                filtro.addEventListener('click', function() {
-                    // Remover clase active de todos los filtros
-                    filtros.forEach(f => f.classList.remove('active'));
-                    // Agregar clase active al filtro clickeado
-                    this.classList.add('active');
-
-                    const filtroSeleccionado = this.dataset.filtro;
-
-                    mecanicos.forEach(mecanico => {
-                        const especialidades = mecanico.dataset.especialidades;
-                        const disponible = mecanico.dataset.disponible === 'true';
-
-                        let mostrar = false;
-
-                        switch(filtroSeleccionado) {
-                            case 'todos':
-                                mostrar = true;
-                                break;
-                            case 'disponible':
-                                mostrar = disponible;
-                                break;
-                            case 'motor':
-                            case 'electrico':
-                            case 'frenos':
-                            case 'neumaticos':
-                                mostrar = especialidades.includes(filtroSeleccionado);
-                                break;
-                        }
-
-                        if (mostrar) {
-                            mecanico.style.display = 'block';
-                            mecanico.style.animation = 'fadeInUp 0.5s ease-out';
-                        } else {
-                            mecanico.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
-
-        // Función para contactar mecánico
-        function contactarMecanico(nombre) {
-            // Guardar información del mecánico seleccionado
-            sessionStorage.setItem('mecanicoSeleccionado', nombre);
-            
-            // Mostrar modal o redirigir a formulario
-            if (confirm(`¿Deseas solicitar un servicio con ${nombre}?`)) {
-                window.location.href = 'registro.html?mecanico=' + encodeURIComponent(nombre);
-            }
-        }
-
-        // Estilos dinámicos para los filtros
-        const style = document.createElement('style');
-        style.textContent = `
-            .filtro-btn.active {
-                background: #1976d2 !important;
-                color: white !important;
-                border-color: #1976d2 !important;
-            }
-            .filtro-btn {
-                transition: all 0.3s ease;
-            }
-            .filtro-btn:hover {
-                background: #1976d2;
-                color: white;
-                border-color: #1976d2;
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+    <script src="js/main.js"></script>
+    <script src="js/mecanicos.js"></script>
 </body>
 </html>
