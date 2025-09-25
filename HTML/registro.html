@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Fixsy</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../CSS/EstilosPages.css">
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="../../index.html">
+                <i class="bi bi-wrench text-warning"></i> Fixsy
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="InicioSesion.html">Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Section -->
+    <section class="py-5" style="margin-top: 80px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="card shadow-lg border-0 border-radius-custom">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <i class="bi bi-person-plus-fill fs-1 text-primary mb-3"></i>
+                                <h2 class="fw-bold text-primary mb-2">Crear Cuenta</h2>
+                                <p class="text-muted">Únete a Fixsy y encuentra los mejores mecánicos</p>
+                            </div>
+
+                            <!-- Formulario de Registro -->
+                            <form id="registroForm" novalidate>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="nombres" class="form-label">
+                                            <i class="bi bi-person me-2"></i>Nombres
+                                        </label>
+                                        <input type="text" class="form-control" id="nombres" name="nombres" required>
+                                        <div class="invalid-feedback">
+                                            Por favor ingresa tu nombre.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="apellidos" class="form-label">
+                                            <i class="bi bi-person me-2"></i>Apellidos
+                                        </label>
+                                        <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                                        <div class="invalid-feedback">
+                                            Por favor ingresa tus apellidos.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">
+                                        <i class="bi bi-envelope me-2"></i>Correo Electrónico
+                                    </label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa un correo válido.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="telefono" class="form-label">
+                                        <i class="bi bi-telephone me-2"></i>Teléfono
+                                    </label>
+                                    <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="+56 9 1234 5678" required>
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa tu teléfono.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="direccion" class="form-label">
+                                        <i class="bi bi-geo-alt me-2"></i>Dirección
+                                    </label>
+                                    <input type="text" class="form-control" id="direccion" name="direccion" required>
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa tu dirección.
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label for="password" class="form-label">
+                                            <i class="bi bi-lock me-2"></i>Contraseña
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="password" class="form-control" id="password" name="password" required>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password')">
+                                                <i class="bi bi-eye" id="password-icon"></i>
+                                            </button>
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            La contraseña debe tener al menos 6 caracteres.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="confirmPassword" class="form-label">
+                                            <i class="bi bi-lock-fill me-2"></i>Confirmar Contraseña
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('confirmPassword')">
+                                                <i class="bi bi-eye" id="confirmPassword-icon"></i>
+                                            </button>
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Las contraseñas deben coincidir.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="terminos" required>
+                                    <label class="form-check-label" for="terminos">
+                                        Acepto los <a href="#" class="text-primary">términos y condiciones</a> y la <a href="#" class="text-primary">política de privacidad</a>
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Debes aceptar los términos y condiciones.
+                                    </div>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="bi bi-person-plus me-2"></i>Registrarme
+                                    </button>
+                                </div>
+
+                                <div class="text-center mt-3">
+                                    <p class="text-muted">¿Ya tienes una cuenta? 
+                                        <a href="InicioSesion.html" class="text-primary text-decoration-none fw-bold">Iniciar Sesión</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="successToast" class="toast" role="alert">
+            <div class="toast-header bg-success text-white">
+                <i class="bi bi-check-circle me-2"></i>
+                <strong class="me-auto">¡Éxito!</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                Tu cuenta ha sido creada exitosamente.
+            </div>
+        </div>
+        <div id="errorToast" class="toast" role="alert">
+            <div class="toast-header bg-danger text-white">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body" id="errorMessage">
+                Ocurrió un error al crear la cuenta.
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="../../JavaScript/register.js"></script>
+</body>
+</html>

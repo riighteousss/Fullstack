@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixsy - Tu Mecánico de Confianza</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="CSS/EstilosPages.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#inicio">
+                <i class="bi bi-wrench text-warning"></i> Fixsy
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mecanicos">Mecánicos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="HTML/Pages/InicioSesion.html">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-warning text-dark px-3 ms-2 rounded-pill" href="HTML/Pages/registro.html">Registrarse</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero bg-primary text-white py-5">
+        <div class="container py-5">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4 animate-fade-in">Tu Mecánico de Confianza, Cuando lo Necesites</h1>
+                    <p class="lead mb-4 animate-fade-in-delay">Conectamos a conductores con mecánicos verificados para servicios rápidos, seguros y profesionales</p>
+                    <div class="d-flex flex-column flex-md-row gap-3 animate-fade-in-delay-2">
+                        <button class="btn btn-warning btn-lg px-4 fw-bold" onclick="pedirAsistencia()">
+                            <i class="bi bi-tools me-2"></i>Pedir Asistencia
+                        </button>
+                        <a href="#servicios" class="btn btn-outline-light btn-lg px-4">
+                            <i class="bi bi-info-circle me-2"></i>Cómo Funciona
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="hero-image p-4">
+                        <img src="Images/LogoMangaMania.png" alt="Fixsy Logo" class="img-fluid mb-3" style="max-width: 200px;">
+                        <div class="row mt-3">
+                            <div class="col-4"><i class="bi bi-wrench-adjustable fs-1 text-success animate-bounce"></i></div>
+                            <div class="col-4"><i class="bi bi-gear-fill fs-1 text-warning animate-spin"></i></div>
+                            <div class="col-4"><i class="bi bi-tools fs-1 text-success animate-bounce-delay"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-5 fw-bold text-dark mb-3">Nuestros Servicios</h2>
+                    <p class="lead text-muted">Ofrecemos servicios mecánicos profesionales adaptados a tus necesidades</p>
+                </div>
+            </div>
+            <div class="row g-4" id="servicios-container">
+                <!-- Los servicios se cargarán dinámicamente desde JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo Funciona -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-5 fw-bold text-dark mb-3">¿Cómo Funciona?</h2>
+                    <p class="lead text-muted">Obtén ayuda mecánica en 3 simples pasos</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="step-image-container mb-4">
+                        <img src="Images/step1.jpg" alt="Solicita tu servicio" class="img-fluid rounded-circle step-image shadow">
+                        <div class="step-number bg-primary text-white rounded-circle position-absolute">
+                            1
+                        </div>
+                    </div>
+                    <h4 class="fw-bold">Solicita tu Servicio</h4>
+                    <p class="text-muted">Describe tu problema o elige el tipo de mantención que necesitas</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="step-image-container mb-4">
+                        <img src="Images/step2.jpg" alt="Te asignamos un mecánico" class="img-fluid rounded-circle step-image shadow">
+                        <div class="step-number bg-warning text-white rounded-circle position-absolute">
+                            2
+                        </div>
+                    </div>
+                    <h4 class="fw-bold">Te Asignamos un Mecánico</h4>
+                    <p class="text-muted">Seleccionamos al mecánico más cercano y mejor calificado para ti</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="step-image-container mb-4">
+                        <img src="Images/step3.jpg" alt="Recibe tu servicio" class="img-fluid rounded-circle step-image shadow">
+                        <div class="step-number bg-success text-white rounded-circle position-absolute">
+                            3
+                        </div>
+                    </div>
+                    <h4 class="fw-bold">Recibe tu Servicio</h4>
+                    <p class="text-muted">El mecánico llega a tu ubicación o te recibe en su taller</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mecánicos Cercanos -->
+    <section id="mecanicos" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-5 fw-bold text-dark mb-3">Mecánicos Cercanos</h2>
+                    <p class="lead text-muted">Nuestros mecánicos verificados están listos para ayudarte</p>
+                </div>
+            </div>
+            <div class="row g-4" id="mecanicos-container">
+                <!-- Los mecánicos se cargarán dinámicamente desde JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="text-warning mb-3">
+                        <i class="bi bi-wrench me-2"></i>Fixsy
+                    </h5>
+                    <p class="text-light">Tu plataforma de confianza para servicios mecánicos profesionales y verificados.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-primary fs-4"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-danger fs-4"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-info fs-4"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="text-warning mb-3">Enlaces</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#servicios" class="text-light text-decoration-none">Servicios</a></li>
+                        <li><a href="#mecanicos" class="text-light text-decoration-none">Mecánicos</a></li>
+                        <li><a href="HTML/Pages/registro.html" class="text-light text-decoration-none">Registro</a></li>
+                        <li><a href="HTML/Pages/InicioSesion.html" class="text-light text-decoration-none">Iniciar Sesión</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-warning mb-3">Contacto</h6>
+                    <p class="text-light mb-1"><i class="bi bi-telephone me-2 text-success"></i>+56 9 1234 5678</p>
+                    <p class="text-light mb-1"><i class="bi bi-envelope me-2 text-info"></i>info@fixsy.cl</p>
+                    <p class="text-light"><i class="bi bi-geo-alt me-2 text-danger"></i>Santiago, Chile</p>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-warning mb-3">Horarios</h6>
+                    <p class="text-light mb-1">Lunes - Viernes: 8:00 - 18:00</p>
+                    <p class="text-light mb-1">Sábado: 9:00 - 15:00</p>
+                    <p class="text-light">Emergencias: 24/7</p>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary">
+            <div class="text-center">
+                <p class="mb-0 text-light">&copy; 2025 Fixsy. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="JavaScript/tomos.js"></script>
+    <script>
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarServicios();
+            cargarMecanicos();
+        });
+    </script>
+</body>
+</html>

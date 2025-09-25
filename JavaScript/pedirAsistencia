@@ -1,0 +1,374 @@
+// ===== PEDIR ASISTENCIA - FUNCIONALIDADES =====
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Configurar fecha mínima (hoy)
+    const fechaCita = document.getElementById('fechaCita');
+    if (fechaCita) {
+        const hoy = new Date().toISOString().split('T')[0];
+        fechaCita.min = hoy;
+    }
+
+    // Event listeners para formularios
+    const citaForm = document.getElementById('citaForm');
+    const emergenciaForm = document.getElementById('emergenciaForm');
+
+    if (citaForm) {
+        citaForm.addEventListener('submit', manejarSolicitudCita);
+    }
+
+    if (emergenciaForm) {
+        emergenciaForm.addEventListener('submit', manejarSolicitudEmergencia);
+    }
+
+    // Validación en tiempo real
+    document.querySelectorAll('input, select, textarea').forEach(campo => {
+        campo.addEventListener('blur', validarCampo);
+        campo.addEventListener('input', limpiarError);
+    });
+});
+
+// ===== MOSTRAR/OCULTAR FORMULARIOS =====
+
+function mostrarFormulario(tipo) {
+    // Ocultar ambos formularios primero
+    document.getElementById('formCita').classList.add('d-none');
+    document.getElementById('formEmergencia').classList.add('d-none');
+
+    // Mostrar el formulario seleccionado
+    if (tipo === 'cita') {
+        document.getElementById('formCita').classList.remove('d-none');
+        document.getElementById('formCita').scrollIntoView({ behavior: 'smooth' });
+    } else if (tipo === 'emergencia') {
+        document.getElementById('formEmergencia').classList.remove('d-none');
+        document.getElementById('formEmergencia').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function ocultarFormularios() {
+    document.getElementById('formCita').classList.add('d-none');
+    document.getElementById('formEmergencia').classList.add('d-none');
+    
+    // Scroll hacia arriba
+    document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ===== MANEJO DE CITAS =====
+
+function manejarSolicitudCita(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+
+    // Validar formulario
+    if (!validarFormulario(form)) {
+        mostrarToast('error', 'Por favor completa todos los campos requeridos');
+        return;
+    }
+
+    // Validar fecha
+    const fechaSeleccionada = new Date(formData.get('fecha'));
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+
+    if (fechaSeleccionada < hoy) {
+        mostrarToast('error', 'No puedes agendar una cita en el pasado');
+        return;
+    }
+
+    // Mostrar loading
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="spinner-border spinner-border-sm me-2"></i>Procesando...';
+    submitBtn.disabled = true;
+
+    // Simular proceso
+    setTimeout(() => {
+        procesarCita(formData, submitBtn, originalText);
+    }, 2000);
+}
+
+function procesarCita(formData, submitBtn, originalText) {
+    try {
+        const citaData = {
+            id: Date.now(),
+            tipo: 'cita',
+            fecha: formData.get('fecha'),
+            hora: formData.get('hora'),
+            tipoServicio: formData.get('tipoServicio'),
+            descripcion: formData.get('descripcion'),
+            direccion: formData.get('direccion'),
+            estado: 'pendiente',
+            fechaCreacion: new Date().toISOString()
+        };
+
+        // Guardar en localStorage
+        const solicitudes = JSON.parse(localStorage.getItem('fixsy_solicitudes') || '[]');
+        solicitudes.push(citaData);
+        localStorage.setItem('fixsy_solicitudes', JSON.stringify(solicitudes));
+
+        // Éxito
+        mostrarToast('success', '¡Cita agendada exitosamente! Te contactaremos pronto.');
+        
+        // Limpiar formulario
+        document.getElementById('citaForm').reset();
+        
+        setTimeout(() => {
+            ocultarFormularios();
+        }, 2000);
+
+    } catch (error) {
+        console.error('Error al procesar cita:', error);
+        mostrarToast('error', 'Error al agendar la cita. Inténtalo nuevamente.');
+    } finally {
+        // Restaurar botón
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
+// ===== MANEJO DE EMERGENCIAS =====
+
+function manejarSolicitudEmergencia(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+
+    // Validar formulario
+    if (!validarFormulario(form)) {
+        mostrarToast('error', 'Por favor completa todos los campos requeridos');
+        return;
+    }
+
+    // Mostrar loading
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="spinner-border spinner-border-sm me-2"></i>Enviando...';
+    submitBtn.disabled = true;
+
+    // Simular proceso urgente
+    setTimeout(() => {
+        procesarEmergencia(formData, submitBtn, originalText);
+    }, 1500);
+}
+
+function procesarEmergencia(formData, submitBtn, originalText) {
+    try {
+        const emergenciaData = {
+            id: Date.now(),
+            tipo: 'emergencia',
+            problema: formData.get('problema'),
+            direccion: formData.get('direccion'),
+            telefono: formData.get('telefono'),
+            necesitaGrua: formData.get('grua') === 'si',
+            estado: 'urgente',
+            fechaCreacion: new Date().toISOString(),
+            tiempoRespuestaEstimado: '15-30 minutos'
+        };
+
+        // Guardar en localStorage
+        const solicitudes = JSON.parse(localStorage.getItem('fixsy_solicitudes') || '[]');
+        solicitudes.push(emergenciaData);
+        localStorage.setItem('fixsy_solicitudes', JSON.stringify(solicitudes));
+
+        // Éxito - mostrar información de emergencia
+        const mensajeExito = `
+            ¡Solicitud de emergencia enviada!<br>
+            <strong>Tiempo estimado de llegada:</strong> 15-30 minutos<br>
+            <strong>Te contactaremos al:</strong> ${emergenciaData.telefono}
+        `;
+        
+        mostrarToast('success', mensajeExito);
+
+        // Simular asignación de mecánico
+        setTimeout(() => {
+            mostrarAsignacionMecanico();
+        }, 3000);
+
+        // Limpiar formulario
+        document.getElementById('emergenciaForm').reset();
+        
+        setTimeout(() => {
+            ocultarFormularios();
+        }, 4000);
+
+    } catch (error) {
+        console.error('Error al procesar emergencia:', error);
+        mostrarToast('error', 'Error al enviar la solicitud. Inténtalo nuevamente.');
+    } finally {
+        // Restaurar botón
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
+// ===== ASIGNACIÓN DE MECÁNICO =====
+
+function mostrarAsignacionMecanico() {
+    const mecanicoAsignado = {
+        nombre: 'Carlos Rodríguez',
+        telefono: '+56 9 8765 4321',
+        vehiculo: 'Camioneta Ford F-150 Blanca',
+        patente: 'AB-CD-12',
+        tiempoLlegada: '18 minutos'
+    };
+
+    const mensaje = `
+        <strong>¡Mecánico asignado!</strong><br>
+        <strong>Nombre:</strong> ${mecanicoAsignado.nombre}<br>
+        <strong>Teléfono:</strong> ${mecanicoAsignado.telefono}<br>
+        <strong>Vehículo:</strong> ${mecanicoAsignado.vehiculo}<br>
+        <strong>Llegada estimada:</strong> ${mecanicoAsignado.tiempoLlegada}
+    `;
+
+    mostrarToast('success', mensaje);
+}
+
+// ===== VALIDACIONES =====
+
+function validarCampo(event) {
+    const campo = event.target;
+    const valor = campo.value.trim();
+    let esValido = true;
+
+    // Limpiar estados anteriores
+    campo.classList.remove('is-valid', 'is-invalid');
+
+    if (campo.hasAttribute('required') && !valor) {
+        esValido = false;
+    } else {
+        // Validaciones específicas
+        switch (campo.type) {
+            case 'date':
+                const fechaSeleccionada = new Date(valor);
+                const hoy = new Date();
+                hoy.setHours(0, 0, 0, 0);
+                if (fechaSeleccionada < hoy) {
+                    esValido = false;
+                }
+                break;
+
+            case 'tel':
+                const telefonoRegex = /^[+]?[\d\s\-()]+$/;
+                const soloNumeros = valor.replace(/\D/g, '');
+                if (valor && (!telefonoRegex.test(valor) || soloNumeros.length < 8)) {
+                    esValido = false;
+                }
+                break;
+        }
+    }
+
+    if (esValido && valor) {
+        campo.classList.add('is-valid');
+    } else if (!esValido) {
+        campo.classList.add('is-invalid');
+    }
+
+    return esValido;
+}
+
+function limpiarError(event) {
+    const campo = event.target;
+    if (campo.classList.contains('is-invalid') && campo.value.trim() !== '') {
+        campo.classList.remove('is-invalid');
+    }
+}
+
+function validarFormulario(form) {
+    let esValido = true;
+    const campos = form.querySelectorAll('input[required], select[required], textarea[required]');
+
+    campos.forEach(campo => {
+        if (!validarCampo({ target: campo })) {
+            esValido = false;
+        }
+    });
+
+    return esValido;
+}
+
+// ===== GEOLOCALIZACIÓN =====
+
+function obtenerUbicacionActual() {
+    if (!navigator.geolocation) {
+        mostrarToast('error', 'La geolocalización no es compatible con este navegador');
+        return;
+    }
+
+    const campos = [
+        document.getElementById('direccionCita'),
+        document.getElementById('direccionEmergencia')
+    ].filter(campo => campo && !campo.classList.contains('d-none'));
+
+    if (campos.length === 0) return;
+
+    campos.forEach(campo => {
+        campo.placeholder = 'Obteniendo ubicación...';
+        campo.disabled = true;
+    });
+
+    navigator.geolocation.getCurrentPosition(
+        position => {
+            // En una aplicación real, aquí usarías una API de geocodificación inversa
+            const ubicacion = `Lat: ${position.coords.latitude.toFixed(6)}, Lng: ${position.coords.longitude.toFixed(6)}`;
+            
+            campos.forEach(campo => {
+                campo.value = ubicacion;
+                campo.disabled = false;
+                campo.placeholder = 'Ingresa tu dirección completa';
+            });
+
+            mostrarToast('success', 'Ubicación obtenida correctamente');
+        },
+        error => {
+            campos.forEach(campo => {
+                campo.disabled = false;
+                campo.placeholder = 'No se pudo obtener la ubicación automáticamente';
+            });
+            
+            mostrarToast('error', 'No se pudo obtener tu ubicación. Ingrésala manualmente.');
+            console.error('Error de geolocalización:', error);
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 300000
+        }
+    );
+}
+
+// ===== UTILIDADES =====
+
+function mostrarToast(tipo, mensaje) {
+    let toastContainer = document.querySelector('.toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.className = 'toast-container position-fixed top-0 end-0 p-3';
+        document.body.appendChild(toastContainer);
+    }
+
+    const toastId = 'toast-' + Date.now();
+    const iconClass = tipo === 'success' ? 'bi-check-circle' : 'bi-exclamation-triangle';
+    const bgClass = tipo === 'success' ? 'bg-success' : 'bg-danger';
+    const titulo = tipo === 'success' ? '¡Éxito!' : 'Error';
+
+    const toastHTML = `
+        <div id="${toastId}" class="toast" role="alert">
+            <div class="toast-header ${bgClass} text-white">
+                <i class="bi ${iconClass} me-2"></i>
+                <strong class="me-auto">${titulo}</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">${mensaje}</div>
+        </div>
+    `;
+
+    toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+
+    const toastElement = document.getElementById(toastId);
+    const toast = new bootstrap.Toast(toastElement, { autohide: true, delay: 5000 });
+    toast.show();
+
+    toastElement.addEventListener('hidden.bs.toast', () => toastElement.remove());
+}
