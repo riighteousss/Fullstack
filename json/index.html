@@ -4,202 +4,306 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fixsy - Tu Mecánico de Confianza</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="CSS/EstilosPages.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Estilos para el video */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(25,118,210,0.8), rgba(33,150,243,0.8));
+            z-index: 0;
+        }
+        
+        .hero-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Mejorar iconos */
+        .servicio-icon, .mecanico-avatar {
+            background: linear-gradient(135deg, #FF6F00, #FF8F00);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .servicio-icon::before, .mecanico-avatar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+        
+        /* Imágenes de ejemplo para servicios */
+        .servicio-card {
+            position: relative;
+            background: white;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .servicio-card:hover {
+            border-color: #FF6F00;
+            box-shadow: 0 10px 30px rgba(255,111,0,0.2);
+        }
+        
+        /* Video responsive */
+        @media (max-width: 768px) {
+            .hero-video {
+                opacity: 0.2;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow">
-        <div class="container">
-            <a class="navbar-brand fw-bold fs-3" href="#inicio">
-                <i class="bi bi-wrench text-warning"></i> Fixsy
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#inicio">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#servicios">Servicios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#mecanicos">Mecánicos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="HTML/Pages/InicioSesion.html">Iniciar Sesión</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-warning text-dark px-3 ms-2 rounded-pill" href="HTML/Pages/registro.html">Registrarse</a>
-                    </li>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">🔧 Fixsy</div>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="mecanicos.html">Mecánicos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="registro.html">Registro</a></li>
                 </ul>
-            </div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero bg-primary text-white py-5">
-        <div class="container py-5">
-            <div class="row align-items-center min-vh-100">
-                <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold mb-4 animate-fade-in">Tu Mecánico de Confianza, Cuando lo Necesites</h1>
-                    <p class="lead mb-4 animate-fade-in-delay">Conectamos a conductores con mecánicos verificados para servicios rápidos, seguros y profesionales</p>
-                    <div class="d-flex flex-column flex-md-row gap-3 animate-fade-in-delay-2">
-                        <button class="btn btn-warning btn-lg px-4 fw-bold" onclick="pedirAsistencia()">
-                            <i class="bi bi-tools me-2"></i>Pedir Asistencia
-                        </button>
-                        <a href="#servicios" class="btn btn-outline-light btn-lg px-4">
-                            <i class="bi bi-info-circle me-2"></i>Cómo Funciona
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center">
-                    <div class="hero-image p-4">
-                        <img src="Images/LogoMangaMania.png" alt="Fixsy Logo" class="img-fluid mb-3" style="max-width: 200px;">
-                        <div class="row mt-3">
-                            <div class="col-4"><i class="bi bi-wrench-adjustable fs-1 text-success animate-bounce"></i></div>
-                            <div class="col-4"><i class="bi bi-gear-fill fs-1 text-warning animate-spin"></i></div>
-                            <div class="col-4"><i class="bi bi-tools fs-1 text-success animate-bounce-delay"></i></div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Hero Section con Video -->
+    <section class="hero" id="inicio">
+        <!-- Video de fondo -->
+        <video class="hero-video" autoplay muted loop>
+            <source src="mecanico1.mp4" type="video/mp4">
+            <!-- Puedes cambiar por un video de mecánica -->
+        </video>
+        
+        <!-- Overlay para oscurecer el video -->
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-container">
+            <h1>Tu Mecánico de Confianza, Cuando lo Necesites</h1>
+            <p>Conectamos a conductores con mecánicos verificados para servicios rápidos, seguros y profesionales</p>
+            <div class="cta-buttons">
+                <a href="registro.html" class="btn btn-primary">Solicitar Servicio</a>
+                <a href="#como-funciona" class="btn btn-secondary">Cómo Funciona</a>
             </div>
         </div>
     </section>
 
-    <!-- Servicios Section -->
-    <section id="servicios" class="py-5 bg-light">
+    <!-- Servicios Principales -->
+    <section class="servicios">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
-                    <h2 class="display-5 fw-bold text-dark mb-3">Nuestros Servicios</h2>
-                    <p class="lead text-muted">Ofrecemos servicios mecánicos profesionales adaptados a tus necesidades</p>
+            <h2 class="section-title fade-in">Nuestros Servicios</h2>
+            <div class="servicios-grid">
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon">🔧</div>
+                    <h3>Mantención General</h3>
+                    <p>Revisión completa de tu vehículo por mecánicos certificados</p>
+                    <div class="precio">Desde $25.000</div>
+                    <div style="margin-top: 1rem;">
+                        <small style="color: #666;">✓ Cambio de aceite ✓ Revisión frenos ✓ Filtros</small>
+                    </div>
                 </div>
-            </div>
-            <div class="row g-4" id="servicios-container">
-                <!-- Los servicios se cargarán dinámicamente desde JavaScript -->
+                
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon">🚗</div>
+                    <h3>Emergencias 24/7</h3>
+                    <p>Asistencia mecánica inmediata donde te encuentres</p>
+                    <div class="precio">Desde $35.000</div>
+                    <div style="margin-top: 1rem;">
+                        <small style="color: #666;">✓ Servicio inmediato ✓ Cualquier hora ✓ Tu ubicación</small>
+                    </div>
+                </div>
+                
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon">🏠</div>
+                    <h3>Servicio a Domicilio</h3>
+                    <p>Llevamos el taller hasta tu casa u oficina</p>
+                    <div class="precio">Desde $30.000</div>
+                    <div style="margin-top: 1rem;">
+                        <small style="color: #666;">✓ En tu hogar ✓ Sin traslados ✓ Herramientas incluidas</small>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Cómo Funciona -->
-    <section class="py-5 bg-white">
+    <section class="como-funciona" id="como-funciona">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
-                    <h2 class="display-5 fw-bold text-dark mb-3">¿Cómo Funciona?</h2>
-                    <p class="lead text-muted">Obtén ayuda mecánica en 3 simples pasos</p>
+            <h2 class="section-title fade-in">¿Cómo Funciona?</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 3rem;">
+                En solo 3 pasos sencillos tendrás tu vehículo funcionando perfectamente
+            </p>
+            <div class="pasos-grid">
+                <div class="paso fade-in">
+                    <div class="paso-numero">1</div>
+                    <h3>Solicita tu Servicio</h3>
+                    <p>Describe tu problema o elige el tipo de mantención que necesitas. Es rápido y fácil.</p>
                 </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4 text-center">
-                    <div class="step-image-container mb-4">
-                        <img src="Images/step1.jpg" alt="Solicita tu servicio" class="img-fluid rounded-circle step-image shadow">
-                        <div class="step-number bg-primary text-white rounded-circle position-absolute">
-                            1
-                        </div>
-                    </div>
-                    <h4 class="fw-bold">Solicita tu Servicio</h4>
-                    <p class="text-muted">Describe tu problema o elige el tipo de mantención que necesitas</p>
+                <div class="paso fade-in">
+                    <div class="paso-numero">2</div>
+                    <h3>Te Asignamos un Mecánico</h3>
+                    <p>Seleccionamos al mecánico más cercano y mejor calificado para tu caso específico.</p>
                 </div>
-                <div class="col-md-4 text-center">
-                    <div class="step-image-container mb-4">
-                        <img src="Images/step2.jpg" alt="Te asignamos un mecánico" class="img-fluid rounded-circle step-image shadow">
-                        <div class="step-number bg-warning text-white rounded-circle position-absolute">
-                            2
-                        </div>
-                    </div>
-                    <h4 class="fw-bold">Te Asignamos un Mecánico</h4>
-                    <p class="text-muted">Seleccionamos al mecánico más cercano y mejor calificado para ti</p>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div class="step-image-container mb-4">
-                        <img src="Images/step3.jpg" alt="Recibe tu servicio" class="img-fluid rounded-circle step-image shadow">
-                        <div class="step-number bg-success text-white rounded-circle position-absolute">
-                            3
-                        </div>
-                    </div>
-                    <h4 class="fw-bold">Recibe tu Servicio</h4>
-                    <p class="text-muted">El mecánico llega a tu ubicación o te recibe en su taller</p>
+                <div class="paso fade-in">
+                    <div class="paso-numero">3</div>
+                    <h3>Recibe tu Servicio</h3>
+                    <p>El mecánico llega a tu ubicación o te recibe en su taller. ¡Así de simple!</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mecánicos Cercanos -->
-    <section id="mecanicos" class="py-5 bg-light">
+    <!-- Sección de Confianza -->
+    <section style="padding: 60px 0; background: #f8fafc;">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
-                    <h2 class="display-5 fw-bold text-dark mb-3">Mecánicos Cercanos</h2>
-                    <p class="lead text-muted">Nuestros mecánicos verificados están listos para ayudarte</p>
+            <div style="text-align: center;">
+                <h2 class="fade-in" style="font-size: 2rem; margin-bottom: 2rem; color: #333;">¿Por qué elegir Fixsy?</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div class="fade-in" style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">⭐</div>
+                        <h3 style="color: #FF6F00; margin-bottom: 0.5rem;">Mecánicos Verificados</h3>
+                        <p style="color: #666;">Todos nuestros profesionales están certificados y con experiencia comprobada.</p>
+                    </div>
+                    <div class="fade-in" style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+                        <h3 style="color: #FF6F00; margin-bottom: 0.5rem;">Servicio Rápido</h3>
+                        <p style="color: #666;">Respuesta inmediata y atención en el menor tiempo posible.</p>
+                    </div>
+                    <div class="fade-in" style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">💰</div>
+                        <h3 style="color: #FF6F00; margin-bottom: 0.5rem;">Precios Justos</h3>
+                        <p style="color: #666;">Precios transparentes sin sorpresas ni costos ocultos.</p>
+                    </div>
+                    <div class="fade-in" style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🛡️</div>
+                        <h3 style="color: #FF6F00; margin-bottom: 0.5rem;">100% Garantizado</h3>
+                        <p style="color: #666;">Garantía en todos nuestros trabajos y repuestos utilizados.</p>
+                    </div>
                 </div>
             </div>
-            <div class="row g-4" id="mecanicos-container">
-                <!-- Los mecánicos se cargarán dinámicamente desde JavaScript -->
+        </div>
+    </section>
+
+    <!-- Llamada a la acción final -->
+    <section style="padding: 60px 0; background: linear-gradient(135deg, #1976d2, #2196f3); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">¿Tu auto necesita atención?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+                No esperes más. Conecta con el mejor mecánico de tu zona en minutos.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="registro.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 35px;">
+                    Solicitar Servicio Ahora
+                </a>
+                <a href="tel:+56912345678" class="btn btn-secondary" style="font-size: 1.1rem; padding: 15px 35px;">
+                    Llamar: +56 9 1234 5678
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-5">
+    <footer class="footer">
         <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <h5 class="text-warning mb-3">
-                        <i class="bi bi-wrench me-2"></i>Fixsy
-                    </h5>
-                    <p class="text-light">Tu plataforma de confianza para servicios mecánicos profesionales y verificados.</p>
-                    <div class="d-flex gap-3 mt-3">
-                        <a href="#" class="text-primary fs-4"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-danger fs-4"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="text-info fs-4"><i class="bi bi-twitter"></i></a>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Fixsy</h3>
+                    <p>Tu plataforma de confianza para servicios mecánicos profesionales y verificados en Santiago y toda la Región Metropolitana.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="color: #ff6f00; margin-right: 1rem; font-size: 1.5rem;">📱</a>
+                        <a href="#" style="color: #ff6f00; margin-right: 1rem; font-size: 1.5rem;">📧</a>
+                        <a href="#" style="color: #ff6f00; font-size: 1.5rem;">🌐</a>
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <h6 class="text-warning mb-3">Enlaces</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#servicios" class="text-light text-decoration-none">Servicios</a></li>
-                        <li><a href="#mecanicos" class="text-light text-decoration-none">Mecánicos</a></li>
-                        <li><a href="HTML/Pages/registro.html" class="text-light text-decoration-none">Registro</a></li>
-                        <li><a href="HTML/Pages/InicioSesion.html" class="text-light text-decoration-none">Iniciar Sesión</a></li>
-                    </ul>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <a href="servicios.html">Mantención General</a>
+                    <a href="servicios.html">Emergencias 24/7</a>
+                    <a href="servicios.html">Servicio a Domicilio</a>
+                    <a href="servicios.html">Sistema Eléctrico</a>
+                    <a href="servicios.html">Neumáticos</a>
                 </div>
-                <div class="col-lg-3">
-                    <h6 class="text-warning mb-3">Contacto</h6>
-                    <p class="text-light mb-1"><i class="bi bi-telephone me-2 text-success"></i>+56 9 1234 5678</p>
-                    <p class="text-light mb-1"><i class="bi bi-envelope me-2 text-info"></i>info@fixsy.cl</p>
-                    <p class="text-light"><i class="bi bi-geo-alt me-2 text-danger"></i>Santiago, Chile</p>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <a href="servicios.html">Nuestros Servicios</a>
+                    <a href="mecanicos.html">Mecánicos Certificados</a>
+                    <a href="contacto.html">Contacto</a>
+                    <a href="registro.html">Únete a Fixsy</a>
                 </div>
-                <div class="col-lg-3">
-                    <h6 class="text-warning mb-3">Horarios</h6>
-                    <p class="text-light mb-1">Lunes - Viernes: 8:00 - 18:00</p>
-                    <p class="text-light mb-1">Sábado: 9:00 - 15:00</p>
-                    <p class="text-light">Emergencias: 24/7</p>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📞 +56 9 1234 5678</p>
+                    <p>📧 info@fixsy.cl</p>
+                    <p>📍 Santiago, Chile</p>
+                    <div style="margin-top: 1rem;">
+                        <p style="color: #ff6f00; font-weight: bold;">Horarios de Atención:</p>
+                        <p style="font-size: 0.9rem;">Lun-Vie: 8:00-20:00</p>
+                        <p style="font-size: 0.9rem;">Emergencias: 24/7</p>
+                    </div>
                 </div>
             </div>
-            <hr class="my-4 border-secondary">
-            <div class="text-center">
-                <p class="mb-0 text-light">&copy; 2025 Fixsy. Todos los derechos reservados.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fixsy. Todos los derechos reservados. | Diseñado con ❤️ en Santiago</p>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JavaScript -->
-    <script src="JavaScript/tomos.js"></script>
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
     <script>
-        // Inicializar la página
+        // Script específico para la página de inicio
         document.addEventListener('DOMContentLoaded', function() {
-            cargarServicios();
-            cargarMecanicos();
+            // Pausar video en móviles para ahorrar datos
+            if (window.innerWidth <= 768) {
+                const video = document.querySelector('.hero-video');
+                if (video) {
+                    video.pause();
+                }
+            }
+            
+            // Agregar efecto parallax sutil al video
+            window.addEventListener('scroll', function() {
+                const video = document.querySelector('.hero-video');
+                if (video) {
+                    const scrolled = window.pageYOffset;
+                    video.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
         });
     </script>
 </body>
