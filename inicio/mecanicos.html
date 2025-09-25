@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mecánicos - Fixsy</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .mecanicos-section {
+            padding: 120px 0 80px;
+            background: #f8fafc;
+        }
+        
+        .mecanicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .mecanico-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .mecanico-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .mecanico-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #1976d2, #2196f3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .mecanico-nombre {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .mecanico-especialidad {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .mecanico-rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .estrellas {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+        
+        .rating-numero {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .mecanico-experiencia {
+            background: #e3f2fd;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: #1976d2;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .mecanico-ubicacion {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn-contactar {
+            background: #ff6f00;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-contactar:hover {
+            background: #e65100;
+            transform: translateY(-2px);
+        }
+        
+        .filtros {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filtro-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #1976d2;
+            background: transparent;
+            color: #1976d2;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filtro-btn.active,
+        .filtro-btn:hover {
+            background: #1976d2;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">🔧 Fixsy</div>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="mecanicos.html">Mecánicos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="registro.html">Registro</a></li>
+                </ul>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mecánicos Section -->
+    <section class="mecanicos-section">
+        <div class="container">
+            <h1 class="section-title">Nuestros Mecánicos Certificados</h1>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                Todos nuestros mecánicos están verificados, certificados y tienen años de experiencia
+            </p>
+            
+            <div class="filtros">
+                <button class="filtro-btn active" data-filtro="todos">Todos</button>
+                <button class="filtro-btn" data-filtro="mantencion">Mantención</button>
+                <button class="filtro-btn" data-filtro="emergencias">Emergencias</button>
+                <button class="filtro-btn" data-filtro="electrico">Eléctrico</button>
+                <button class="filtro-btn" data-filtro="neumaticos">Neumáticos</button>
+            </div>
+
+            <div class="mecanicos-grid">
+                <div class="mecanico-card fade-in" data-categoria="mantencion emergencias">
+                    <div class="mecanico-avatar">👨‍🔧</div>
+                    <div class="mecanico-nombre">Carlos Rodríguez</div>
+                    <div class="mecanico-especialidad">Especialista en Mantención General</div>
+                    <div class="mecanico-rating">
+                        <span class="estrellas">★★★★★</span>
+                        <span class="rating-numero">4.9</span>
+                    </div>
+                    <div class="mecanico-experiencia">15 años de experiencia</div>
+                    <div class="mecanico-ubicacion">📍 Las Condes, Santiago</div>
+                    <a href="registro.html" class="btn-contactar">Solicitar Servicio</a>
+                </div>
+
+                <div class="mecanico-card fade-in" data-categoria="emergencias electrico">
+                    <div class="mecanico-avatar">👩‍🔧</div>
+                    <div class="mecanico-nombre">María González</div>
+                    <div class="mecanico-especialidad">Emergencias 24/7 y Sistema Eléctrico</div>
+                    <div class="mecanico-rating">
+                        <span class="estrellas">★★★★★</span>
+                        <span class="rating-numero">4.8</span>
+                    </div>
+                    <div class="mecanico-experiencia">12 años de experiencia</div>
+                    <div class="mecanico-ubicacion">📍 Providencia, Santiago</div>
+                    <a href="registro.html" class="btn-contactar">Solicitar Servicio</a>
+                </div>
+
+                <div class="mecanico-card fade-in" data-categoria="neumaticos mantencion">
+                    <div class="mecanico-avatar">👨‍🔧</div>
+                    <div class="mecanico-nombre">Pedro Martínez</div>
+                    <div class="mecanico-especialidad">Neumáticos y Alineación</div>
+                    <div class="mecanico-rating">
+                        <span class="estrellas">★★★★☆</span>
+                        <span class="rating-numero">4.7</span>
+                    </div>
+                    <div class="mecanico-experiencia">10 años de experiencia</div>
+                    <div class="mecanico-ubicacion">📍 Ñuñoa, Santiago</div>
+                    <a href="registro.html" class="btn-contactar">Solicitar Servicio</a>
+                </div>
+
+                <div class="mecanico-card fade-in" data-categoria="mantencion electrico">
+                    <div class="mecanico-avatar">👩‍🔧</div>
+                    <div class="mecanico-nombre">Ana López</div>
+                    <div class="mecanico-especialidad">Diagnóstico Computarizado</div>
+                    <div class="mecanico-rating">
+                        <span class="estrellas">★★★★★</span>
+                        <span class="rating-numero">4.9</span>
+                    </div>
+                    <div class="mecanico-experiencia">8 años de experiencia</div>
+                    <div class="mecanico-ubicacion">📍 Maipú, Santiago</div>
+                    <a href="registro.html" class="btn-contactar">Solicitar Servicio</a>
+                </div>
+
+                <div class="mecanico-card fade-in" data-categoria="emergencias mantencion">
+                    <div class="mecanico-avatar">👨‍🔧</div>
+                    <div class="mecanico-nombre">Luis Herrera</div>
+                    <div class="mecanico-especialidad">Servicio a Domicilio</div>
+                    <div class="mecanico-rating">
+                        <span class="estrellas">★★★★☆</span>
+                        <span class="rating-numero">4.6</span>
+                    </div>
+                    <div class="mecanico-experiencia">14 años de experiencia</div>
+                    <div class="mecanico-ubicacion">📍 San Miguel, Santiago</div>
+                    <a href="registro.html" class="btn-contactar">Solicitar Servicio</a>
+                </div>
+
+                <div class="mecanico-card fade-in" data-categoria="electrico neumaticos">
+                    <div class="mecanico-avatar">👩‍🔧</div>
+                    <div class="mecanico-nombre">Carmen Silva</div>
+                    <div class="mecanico-especialidad">Multiespecialista</div>
+                    <div class="mecanico-rating">
+                        <span class="estrellas">★★★★★</span>
+                        <span class="rating-numero">4.8</span>
+                    </div>
+                    <div class="mecanico-experiencia">11 años de experiencia</div>
+                    <div class="mecanico-ubicacion">📍 La Florida, Santiago</div>
+                    <a href="registro.html" class="btn-contactar">Solicitar Servicio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Fixsy</h3>
+                    <p>Tu plataforma de confianza para servicios mecánicos profesionales y verificados.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <a href="servicios.html">Servicios</a>
+                    <a href="mecanicos.html">Mecánicos</a>
+                    <a href="contacto.html">Contacto</a>
+                    <a href="registro.html">Registro</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📞 +56 9 1234 5678</p>
+                    <p>📧 info@fixsy.cl</p>
+                    <p>📍 Santiago, Chile</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fixsy. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle para móviles
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Filtros de mecánicos
+        const filtros = document.querySelectorAll('.filtro-btn');
+        const mecanicos = document.querySelectorAll('.mecanico-card');
+
+        filtros.forEach(filtro => {
+            filtro.addEventListener('click', () => {
+                // Remover clase active de todos los filtros
+                filtros.forEach(f => f.classList.remove('active'));
+                // Agregar clase active al filtro clickeado
+                filtro.classList.add('active');
+
+                const categoria = filtro.dataset.filtro;
+
+                mecanicos.forEach(mecanico => {
+                    if (categoria === 'todos') {
+                        mecanico.style.display = 'block';
+                    } else {
+                        const categorias = mecanico.dataset.categoria;
+                        if (categorias && categorias.includes(categoria)) {
+                            mecanico.style.display = 'block';
+                        } else {
+                            mecanico.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Animaciones de scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
